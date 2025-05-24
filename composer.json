@@ -3,8 +3,7 @@
   "description": "AQ 8011-2023",
   "license": "MIT",
   "require": {
-    "php": "^8.1",
-    "tourze/enum-extra": "~0.0.5"
+    "php": "^8.1"
   },
   "require-dev": {
     "phpstan/phpstan": "^2.1",
