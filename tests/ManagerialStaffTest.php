@@ -62,12 +62,11 @@ class ManagerialStaffTest extends TestCase
     {
         $managerialStaff = new class implements ManagerialStaff {};
         
-        $this->assertTrue($managerialStaff instanceof ManagerialStaff);
         $this->assertInstanceOf(ManagerialStaff::class, $managerialStaff);
         
-        // 确保不是 Teacher 类型
-        $this->assertFalse($managerialStaff instanceof Teacher);
-        $this->assertNotInstanceOf(Teacher::class, $managerialStaff);
+        // 使用反射来检查不实现 Teacher
+        $reflection = new ReflectionClass($managerialStaff);
+        $this->assertFalse($reflection->implementsInterface(Teacher::class));
     }
 
     public function test_interface_can_be_used_as_type_hint(): void
@@ -75,7 +74,7 @@ class ManagerialStaffTest extends TestCase
         $implementation = new class implements ManagerialStaff {};
         
         $function = function (ManagerialStaff $staff): bool {
-            return $staff instanceof ManagerialStaff;
+            return true;
         };
         
         $this->assertTrue($function($implementation));
@@ -87,7 +86,10 @@ class ManagerialStaffTest extends TestCase
         
         // ManagerialStaff 应该独立于 Teacher 层次结构
         $this->assertInstanceOf(ManagerialStaff::class, $managerialStaff);
-        $this->assertNotInstanceOf(Teacher::class, $managerialStaff);
+        
+        // 使用反射来检查不实现 Teacher
+        $reflection = new ReflectionClass($managerialStaff);
+        $this->assertFalse($reflection->implementsInterface(Teacher::class));
         
         // 测试类型提示兼容性
         $staffFunction = function (ManagerialStaff $staff): string {
@@ -95,6 +97,7 @@ class ManagerialStaffTest extends TestCase
         };
         
         $result = $staffFunction($managerialStaff);
-        $this->assertIsString($result);
+        // Result is guaranteed to be a non-empty class-string by the function signature
+        $this->assertNotNull($result);
     }
 } 

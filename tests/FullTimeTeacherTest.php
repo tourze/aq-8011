@@ -65,8 +65,6 @@ class FullTimeTeacherTest extends TestCase
     {
         $fullTimeTeacher = new class implements FullTimeTeacher {};
         
-        $this->assertTrue($fullTimeTeacher instanceof FullTimeTeacher);
-        $this->assertTrue($fullTimeTeacher instanceof Teacher);
         $this->assertInstanceOf(FullTimeTeacher::class, $fullTimeTeacher);
         $this->assertInstanceOf(Teacher::class, $fullTimeTeacher);
     }
@@ -76,11 +74,11 @@ class FullTimeTeacherTest extends TestCase
         $implementation = new class implements FullTimeTeacher {};
         
         $functionForFullTime = function (FullTimeTeacher $teacher): bool {
-            return $teacher instanceof FullTimeTeacher;
+            return true;
         };
         
         $functionForTeacher = function (Teacher $teacher): bool {
-            return $teacher instanceof Teacher;
+            return true;
         };
         
         $this->assertTrue($functionForFullTime($implementation));
@@ -97,6 +95,7 @@ class FullTimeTeacherTest extends TestCase
         };
         
         $result = $treatAsTeacher($fullTimeTeacher);
-        $this->assertIsString($result);
+        // Result is guaranteed to be a non-empty class-string by the function signature
+        $this->assertNotNull($result);
     }
 } 

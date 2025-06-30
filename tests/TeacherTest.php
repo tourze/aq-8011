@@ -53,7 +53,6 @@ class TeacherTest extends TestCase
     {
         $teacher = new class implements Teacher {};
         
-        $this->assertTrue($teacher instanceof Teacher);
         $this->assertInstanceOf(Teacher::class, $teacher);
     }
 
@@ -62,7 +61,7 @@ class TeacherTest extends TestCase
         $implementation = new class implements Teacher {};
         
         $function = function (Teacher $teacher): bool {
-            return $teacher instanceof Teacher;
+            return true;
         };
         
         $this->assertTrue($function($implementation));
