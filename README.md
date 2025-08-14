@@ -1,5 +1,12 @@
 # AQ 8011-2023
 
+[English](README.md) | [中文](README.zh-CN.md)
+
+[![Latest Version](https://img.shields.io/packagist/v/tourze/aq-8011.svg?style=flat-square)](https://packagist.org/packages/tourze/aq-8011)
+[![Total Downloads](https://img.shields.io/packagist/dt/tourze/aq-8011.svg?style=flat-square)](https://packagist.org/packages/tourze/aq-8011)
+[![PHP Version](https://img.shields.io/packagist/php-v/tourze/aq-8011.svg?style=flat-square)](https://packagist.org/packages/tourze/aq-8011)
+[![License](https://img.shields.io/packagist/l/tourze/aq-8011.svg?style=flat-square)](https://packagist.org/packages/tourze/aq-8011)
+
 符合 AQ 8011-2023 标准的安全生产培训机构人员接口定义包。
 
 ## 描述

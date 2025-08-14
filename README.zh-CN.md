@@ -1,10 +1,87 @@
 # AQ 8011-2023
 
+[English](README.md) | [中文](README.zh-CN.md)
+
+[![Latest Version](https://img.shields.io/packagist/v/tourze/aq-8011.svg?style=flat-square)](https://packagist.org/packages/tourze/aq-8011)
+[![Total Downloads](https://img.shields.io/packagist/dt/tourze/aq-8011.svg?style=flat-square)](https://packagist.org/packages/tourze/aq-8011)
+[![PHP Version](https://img.shields.io/packagist/php-v/tourze/aq-8011.svg?style=flat-square)](https://packagist.org/packages/tourze/aq-8011)
+[![License](https://img.shields.io/packagist/l/tourze/aq-8011.svg?style=flat-square)](https://packagist.org/packages/tourze/aq-8011)
+
 符合 AQ 8011-2023 标准的安全生产培训机构人员接口定义包。
 
 ## 简介
 
 本包依据 AQ 8011-2023《安全生产培训机构基本条件》国家标准，提供了安全生产培训机构人员分类的 PHP 接口定义，包含教师和管理人员的标准化类型约束。
+
+## Installation
+
+使用 Composer 安装此包：
+
+```bash
+composer require tourze/aq-8011
+```
+
+### 系统要求
+
+- PHP 8.1 或更高版本
+- Composer 2.x
+
+## Quick Start
+
+### 基本使用示例
+
+```php
+<?php
+
+use Tourze\AQ8011\FullTimeTeacher;
+use Tourze\AQ8011\PartTimeTeacher;
+use Tourze\AQ8011\ManagerialStaff;
+
+// 实现专职教师
+class SafetyTrainingFullTimeTeacher implements FullTimeTeacher
+{
+    public function getName(): string
+    {
+        return '专职安全培训教师';
+    }
+}
+
+// 实现兼职教师
+class ExpertPartTimeTeacher implements PartTimeTeacher
+{
+    public function getName(): string
+    {
+        return '兼职专家教师';
+    }
+}
+
+// 实现管理人员
+class TrainingManager implements ManagerialStaff
+{
+    public function getName(): string
+    {
+        return '培训管理员';
+    }
+}
+
+// 使用示例
+$fullTimeTeacher = new SafetyTrainingFullTimeTeacher();
+$partTimeTeacher = new ExpertPartTimeTeacher();
+$manager = new TrainingManager();
+
+// 类型检查
+if ($fullTimeTeacher instanceof FullTimeTeacher) {
+    echo "这是专职教师\n";
+}
+
+if ($partTimeTeacher instanceof PartTimeTeacher) {
+    echo "这是兼职教师\n";
+}
+
+if ($manager instanceof ManagerialStaff) {
+    echo "这是管理人员\n";
+}
+```
 
 ## 标准依据
 
