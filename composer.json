@@ -2,7 +2,9 @@
   "name": "tourze/aq-8011",
   "description": "AQ 8011-2023",
   "license": "MIT",
-  "require": [],
+  "require": {
+    "composer-runtime-api": "^2.0"
+  },
   "require-dev": {
     "phpstan/phpstan": "^2.1",
     "phpunit/phpunit": "^11.5"
