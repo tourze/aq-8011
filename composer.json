@@ -1,6 +1,7 @@
 {
   "name": "tourze/aq-8011",
   "description": "AQ 8011-2023",
+  "homepage": "https://github.com/tourze/aq-8011",
   "license": "MIT",
   "require": {
     "composer-runtime-api": "^2.0"
@@ -18,5 +19,8 @@
     "psr-4": {
       "Tourze\\AQ8011\\Tests\\": "tests"
     }
+  },
+  "extra": {
+    "release-version": "0.0.*"
   }
 }
