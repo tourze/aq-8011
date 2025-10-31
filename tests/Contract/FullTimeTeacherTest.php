@@ -1,26 +1,28 @@
 <?php
 
-namespace Tourze\AQ8011\Tests;
+declare(strict_types=1);
+
+namespace Tourze\AQ8011\Tests\Contract;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use Tourze\AQ8011\PartTimeTeacher;
-use Tourze\AQ8011\Teacher;
+use Tourze\AQ8011\Contract\FullTimeTeacher;
+use Tourze\AQ8011\Contract\Teacher;
 
 /**
  * @internal
  */
-#[CoversClass(className: PartTimeTeacher::class)]
-final class PartTimeTeacherTest extends TestCase
+#[CoversClass(FullTimeTeacher::class)]
+final class FullTimeTeacherTest extends TestCase
 {
     public function testInterfaceExists(): void
     {
-        $this->assertTrue(interface_exists(PartTimeTeacher::class));
+        $this->assertTrue(interface_exists(FullTimeTeacher::class));
     }
 
     public function testInterfaceExtendsTeacher(): void
     {
-        $reflection = new \ReflectionClass(PartTimeTeacher::class);
+        $reflection = new \ReflectionClass(FullTimeTeacher::class);
 
         $this->assertTrue($reflection->implementsInterface(Teacher::class));
         $this->assertContains(Teacher::class, $reflection->getInterfaceNames());
@@ -28,15 +30,15 @@ final class PartTimeTeacherTest extends TestCase
 
     public function testInterfaceCanBeImplemented(): void
     {
-        $partTimeTeacher = new class implements PartTimeTeacher {};
+        $fullTimeTeacher = new class implements FullTimeTeacher {};
 
-        $this->assertInstanceOf(PartTimeTeacher::class, $partTimeTeacher);
-        $this->assertInstanceOf(Teacher::class, $partTimeTeacher);
+        $this->assertInstanceOf(FullTimeTeacher::class, $fullTimeTeacher);
+        $this->assertInstanceOf(Teacher::class, $fullTimeTeacher);
     }
 
     public function testInterfaceIsInterface(): void
     {
-        $reflection = new \ReflectionClass(PartTimeTeacher::class);
+        $reflection = new \ReflectionClass(FullTimeTeacher::class);
 
         $this->assertTrue($reflection->isInterface());
         $this->assertFalse($reflection->isAbstract());
@@ -44,21 +46,21 @@ final class PartTimeTeacherTest extends TestCase
 
     public function testInterfaceHasNoMethods(): void
     {
-        $reflection = new \ReflectionClass(PartTimeTeacher::class);
+        $reflection = new \ReflectionClass(FullTimeTeacher::class);
 
         $this->assertEmpty($reflection->getMethods());
     }
 
     public function testInterfaceHasNoProperties(): void
     {
-        $reflection = new \ReflectionClass(PartTimeTeacher::class);
+        $reflection = new \ReflectionClass(FullTimeTeacher::class);
 
         $this->assertEmpty($reflection->getProperties());
     }
 
     public function testInheritanceHierarchy(): void
     {
-        $reflection = new \ReflectionClass(PartTimeTeacher::class);
+        $reflection = new \ReflectionClass(FullTimeTeacher::class);
         $interfaces = $reflection->getInterfaceNames();
 
         $this->assertCount(1, $interfaces);
@@ -67,17 +69,17 @@ final class PartTimeTeacherTest extends TestCase
 
     public function testTypeCheckingWorks(): void
     {
-        $partTimeTeacher = new class implements PartTimeTeacher {};
+        $fullTimeTeacher = new class implements FullTimeTeacher {};
 
-        $this->assertInstanceOf(PartTimeTeacher::class, $partTimeTeacher);
-        $this->assertInstanceOf(Teacher::class, $partTimeTeacher);
+        $this->assertInstanceOf(FullTimeTeacher::class, $fullTimeTeacher);
+        $this->assertInstanceOf(Teacher::class, $fullTimeTeacher);
     }
 
     public function testInterfaceCanBeUsedAsTypeHint(): void
     {
-        $implementation = new class implements PartTimeTeacher {};
+        $implementation = new class implements FullTimeTeacher {};
 
-        $functionForPartTime = function (PartTimeTeacher $teacher): bool {
+        $functionForFullTime = function (FullTimeTeacher $teacher): bool {
             return true;
         };
 
@@ -85,20 +87,20 @@ final class PartTimeTeacherTest extends TestCase
             return true;
         };
 
-        $this->assertTrue($functionForPartTime($implementation));
+        $this->assertTrue($functionForFullTime($implementation));
         $this->assertTrue($functionForTeacher($implementation));
     }
 
     public function testPolymorphismWithTeacher(): void
     {
-        $partTimeTeacher = new class implements PartTimeTeacher {};
+        $fullTimeTeacher = new class implements FullTimeTeacher {};
 
-        // 多态：PartTimeTeacher 可以被当作 Teacher 使用
+        // 多态：FullTimeTeacher 可以被当作 Teacher 使用
         $treatAsTeacher = function (Teacher $teacher): string {
             return get_class($teacher);
         };
 
-        $result = $treatAsTeacher($partTimeTeacher);
+        $result = $treatAsTeacher($fullTimeTeacher);
         // Result is guaranteed to be a non-empty class-string by the function signature
         $this->assertNotNull($result);
     }

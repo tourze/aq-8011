@@ -1,18 +1,20 @@
 <?php
 
-namespace Tourze\AQ8011\Tests;
+declare(strict_types=1);
+
+namespace Tourze\AQ8011\Tests\Contract;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use Tourze\AQ8011\FullTimeTeacher;
-use Tourze\AQ8011\ManagerialStaff;
-use Tourze\AQ8011\PartTimeTeacher;
-use Tourze\AQ8011\Teacher;
+use Tourze\AQ8011\Contract\FullTimeTeacher;
+use Tourze\AQ8011\Contract\ManagerialStaff;
+use Tourze\AQ8011\Contract\PartTimeTeacher;
+use Tourze\AQ8011\Contract\Teacher;
 
 /**
  * @internal
  */
-#[CoversClass(className: Teacher::class)]
+#[CoversClass(Teacher::class)]
 final class InterfaceHierarchyTest extends TestCase
 {
     public function testAllInterfacesExist(): void
@@ -114,7 +116,7 @@ final class InterfaceHierarchyTest extends TestCase
 
     public function testInterfaceNamespaceConsistency(): void
     {
-        $expectedNamespace = 'Tourze\AQ8011';
+        $expectedNamespace = 'Tourze\AQ8011\Contract';
 
         $interfaces = [
             Teacher::class,

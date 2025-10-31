@@ -1,16 +1,18 @@
 <?php
 
-namespace Tourze\AQ8011\Tests;
+declare(strict_types=1);
+
+namespace Tourze\AQ8011\Tests\Contract;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use Tourze\AQ8011\ManagerialStaff;
-use Tourze\AQ8011\Teacher;
+use Tourze\AQ8011\Contract\ManagerialStaff;
+use Tourze\AQ8011\Contract\Teacher;
 
 /**
  * @internal
  */
-#[CoversClass(className: ManagerialStaff::class)]
+#[CoversClass(ManagerialStaff::class)]
 final class ManagerialStaffTest extends TestCase
 {
     public function testInterfaceExists(): void

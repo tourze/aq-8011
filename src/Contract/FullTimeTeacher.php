@@ -1,6 +1,8 @@
 <?php
 
-namespace Tourze\AQ8011;
+declare(strict_types=1);
+
+namespace Tourze\AQ8011\Contract;
 
 /**
  * 专职教师 full-time teacher
